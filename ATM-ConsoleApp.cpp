@@ -3,23 +3,96 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <ctime> 
+#include <cstdlib> 
 
 
 int userdata()
 {
-    std::string NameFirst;
-    std::string NameLast;
-    double CurrentBalence; 
+    std::vector <std::string> NameFirst;
+    std::vector <std::string> NameLast;
+    std::vector <float> CurrentBalence;
  
     //SET USER DATA MANUALLY UNTIL WE SET UP CSV IMPORTS
 
+    //RANDOM LIST OF NAMES
+    std::vector <std::string> NameRando;
 
-    NameFirst = "John";
-    NameLast = "Smith";
-    CurrentBalence = 512.23 ;
-    int CurrencyRond = (int)(CurrentBalence + 0.5);
+    NameRando.push_back("Jerry");
+    NameRando.push_back("Bob");
+    NameRando.push_back("Smith");
+    NameRando.push_back("Kyle");
+    NameRando.push_back("Mr Beast");
+    NameRando.push_back("Amongus");
+    NameRando.push_back("Terry");
+    NameRando.push_back("Brent");
+    NameRando.push_back("Katey");
+    NameRando.push_back("Bron");
+    NameRando.push_back("Kent");
+    NameRando.push_back("Klark");
+    NameRando.push_back("Ben");
+    NameRando.push_back("Smithy");
+    NameRando.push_back("Rob");
+    NameRando.push_back("Bobby");
+    NameRando.push_back("Hank");
+    NameRando.push_back("Stacy");
+    NameRando.push_back("Sharen");
+    NameRando.push_back("Shannon");
+    NameRando.push_back("BigBooty");
+    NameRando.push_back("Ellie");
+    NameRando.push_back("Ethan");
+    NameRando.push_back("Roberts");
 
-    std::cout << "\n \n Customer First Name: " << NameFirst << "\n \n Customer Last Name: " << NameLast << "\n \n Current Balence: " << "$" << CurrencyRond << "\n \n \n \n \n \n \n";
+    //RANDOM LIST OF Bank Amounts
+    srand(time(NULL));  
+    double random;
+
+
+    std::vector <float> AmountRando;
+
+
+    
+
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    //std::cout << "\n" << AmountRando.size();
+    for (int count = 0; count < 100; ++count)
+    {
+        
+        CurrentBalence.push_back((rand() % (5000000+ 1 - 0)));
+        std::cout << "\n" << CurrentBalence.at(count);
+        // display 5 random numbers per row
+    }
+   
+    /*
+   // std::cout << "\n" << AmountRando.back();
+
+    for (int i = 0; i < AmountRando.back(); ++i)
+    {
+
+        std::cout << "\n" << AmountRando.at(i);
+    }
+
+    /*
+    //Mr John Smith (Used for testing)
+
+    NameFirst.push_back("John");
+    NameLast.push_back("Smith");
+    CurrentBalence.push_back (512.23);
+   
+
+    //We loopn to print out each element
+
+   // int DataBaseSize = NameFirst.max_size;
+
+   // for (int i = 0; i <= DataBaseSize; i++) {
+      //  std::cout << "\n \n Customer First Name: " << NameFirst[i] << "\n \n Customer Last Name: " << NameLast[i] << "\n \n Current Balence: " << "$" << CurrentBalence[i] << "\n \n \n \n \n \n \n";
+   // }
+          //std::cout << "\n \n Customer First Name: " << NameFirst[0] << "\n \n Customer Last Name: " << NameLast[0] << "\n \n Current Balence: " << "$" << CurrentBalence[0] << "\n \n \n \n \n \n \n";
+
+
+*/
+  
 
     return 0;
 
