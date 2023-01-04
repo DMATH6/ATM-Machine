@@ -6,7 +6,7 @@
 #include <vector>
 #include <ctime> 
 #include <cstdlib> 
-
+#include <algorithm>
 
 int userdata()
 {
@@ -53,47 +53,43 @@ int userdata()
 
 
     
-
+    //Grabs random bank account values
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    //std::cout << "\n" << AmountRando.size();
     for (int count = 0; count < 100; ++count)
     {
         
-        CurrentBalence.push_back((rand() % (5000000+ 1 - 0)));
-        std::cout << "\n" << CurrentBalence.at(count);
-        // display 5 random numbers per row
+        CurrentBalence.push_back((rand() % (5000000+ 1 - 0))/100);
+        
+  
     }
-   
-    /*
-   // std::cout << "\n" << AmountRando.back();
-
-    for (int i = 0; i < AmountRando.back(); ++i)
-    {
-
-        std::cout << "\n" << AmountRando.at(i);
-    }
-
-    /*
-    //Mr John Smith (Used for testing)
-
-    NameFirst.push_back("John");
-    NameLast.push_back("Smith");
-    CurrentBalence.push_back (512.23);
-   
-
-    //We loopn to print out each element
-
-   // int DataBaseSize = NameFirst.max_size;
-
-   // for (int i = 0; i <= DataBaseSize; i++) {
-      //  std::cout << "\n \n Customer First Name: " << NameFirst[i] << "\n \n Customer Last Name: " << NameLast[i] << "\n \n Current Balence: " << "$" << CurrentBalence[i] << "\n \n \n \n \n \n \n";
-   // }
-          //std::cout << "\n \n Customer First Name: " << NameFirst[0] << "\n \n Customer Last Name: " << NameLast[0] << "\n \n Current Balence: " << "$" << CurrentBalence[0] << "\n \n \n \n \n \n \n";
-
-
-*/
   
 
+    
+
+  
+
+    //Grabs the first and lastname at random
+    int FirstAndLastNameSize = NameRando.size();
+
+    for (int count = 0; count < FirstAndLastNameSize; ++count)
+    {
+        NameFirst.push_back(NameRando.at(count));
+        NameLast.push_back(NameRando.at(count));
+        
+
+    }
+
+    srand(unsigned(time(NULL)));
+    std::random_shuffle(NameFirst.begin(), NameFirst.end());
+
+    for (int count = 0; count < FirstAndLastNameSize; ++count)
+    {
+        std::cout << "\n" << NameFirst.at(count) << " " << NameLast.at(count) << " " << "$" << CurrentBalence.at(count);
+       
+
+
+    }
+ 
     return 0;
 
 }
@@ -103,15 +99,3 @@ int main()
 {
     userdata();
 }
-
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
