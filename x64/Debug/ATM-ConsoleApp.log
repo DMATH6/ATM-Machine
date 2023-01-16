@@ -1,11 +1,8 @@
 ﻿  ATM-ConsoleApp.cpp
-C:\Users\dylan\Documents\GitHub\ATM-Machine\ATM-ConsoleApp.cpp(55,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\dylan\Documents\GitHub\ATM-Machine\ATM-ConsoleApp.cpp(66,60): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+C:\Users\NopeN\OneDrive\Documents\GitHub\ATM-Machine\ATM-ConsoleApp.cpp(59,63): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
           [
               _Ty=float
           ]
-C:\Users\dylan\Documents\GitHub\ATM-Machine\ATM-ConsoleApp.cpp(76,47): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\dylan\Documents\GitHub\ATM-Machine\ATM-ConsoleApp.cpp(56,12): warning C4101: 'random': unreferenced local variable
-C:\Users\dylan\Documents\GitHub\ATM-Machine\ATM-ConsoleApp.cpp(105,9): warning C4101: 'indexOfArray': unreferenced local variable
-  ATM-ConsoleApp.vcxproj -> C:\Users\dylan\Documents\GitHub\ATM-Machine\x64\Debug\ATM-ConsoleApp.exe
+C:\Users\NopeN\OneDrive\Documents\GitHub\ATM-Machine\ATM-ConsoleApp.cpp(82,9): warning C4101: 'indexOfArray': unreferenced local variable
+  ATM-ConsoleApp.vcxproj -> C:\Users\NopeN\OneDrive\Documents\GitHub\ATM-Machine\x64\Debug\ATM-ConsoleApp.exe
