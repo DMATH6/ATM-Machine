@@ -2,105 +2,82 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include <string>
+#include <cstdlib>
 #include <vector>
 #include <ctime> 
 #include <cstdlib> 
 #include <algorithm>
+#include <format>
+#include <random>
+
 #include <Windows.h>
 #include <iomanip>
-#include <conio.h>
+//#include <conio.h>
 
 using namespace std;
 
-auto UserdataGenerator(std::vector <std::string> CustomerOutputInfo)
+std::vector <std::string> UserdataGenerator()
 {
- 
+    std::vector <std::string> CustomerOutputInfo;
     std::vector <std::string> nameFirst;
     std::vector <std::string> nameLast;
     std::vector <float> currentBalence;
     std::vector <std::string> currentBalenceString;
-    
- 
+
+
 
     //list of names we use to generate account names
     std::vector <std::string>nameRando;
 
-   nameRando.push_back("Jerry");
-   nameRando.push_back("Bob");
-   nameRando.push_back("Smith");
-   nameRando.push_back("Kyle");
-   nameRando.push_back("Mr Beast");
-   nameRando.push_back("Amongus");
-   nameRando.push_back("Terry");
-   nameRando.push_back("Brent");
-   nameRando.push_back("Katey");
-   nameRando.push_back("Bron");
-   nameRando.push_back("Kent");
-   nameRando.push_back("Klark");
-   nameRando.push_back("Ben");
-   nameRando.push_back("Smithy");
-   nameRando.push_back("Rob");
-   nameRando.push_back("Bobby");
-   nameRando.push_back("Hank");
-   nameRando.push_back("Stacy");
-   nameRando.push_back("Sharen");
-   nameRando.push_back("Shannon");
-   nameRando.push_back("BigBooty");
-   nameRando.push_back("Ellie");
-   nameRando.push_back("Ethan");
-   nameRando.push_back("Roberts");
-
-    //used to seed so we can have random account balances 
-    srand(time(NULL));  
-    double random;
-
-
-
-
-    
-    //grabs random bank account values useing random
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    for (int count = 0; count < 100; ++count)
+    std::ifstream fs("nameList");
+    if (fs.is_open())
     {
-       currentBalence.push_back((rand() % (5000000+ 1 - 0))/100);
-       currentBalenceString.push_back(to_string(currentBalence.at(count)));
+        // variable used to extract strings one by one.
+        std::string extractor;
+
+        // extract a string from the input, skipping whitespace
+        //  including newlines, tabs, form-feeds, etc. when this
+        //  no longer works (eof or bad file, take your pick) the
+        //  expression will return false
+        while (fs >> extractor)
+        {
+            nameRando.push_back(extractor);
+        }
+
+        // close the file.
+        fs.close();
     }
-  
-    
-    
+    auto rd = std::random_device{};
+    auto rng = std::default_random_engine{ rd() };
+    srand((unsigned int)time(NULL));
 
-  
-
-    //grabs the first and lastname at random 
-    int FirstAndLastNameSize =nameRando.size();
-
-    for (int count = 0; count < FirstAndLastNameSize; ++count)
+    for (int count = 0; count < nameRando.size(); ++count)
     {
+        //grabs random bank account values useing random
+        currentBalence.push_back((rand() % (5000000 + 1 - 0)) / 100);
+        currentBalenceString.push_back(std::format("{:.2f}", currentBalence.at(count)));
+        //grabs the first and lastname at random 
+        std::shuffle(nameRando.begin(), nameRando.end(), rng);
         nameFirst.push_back(nameRando.at(count));
+        //srand(unsigned(time(NULL)));
+        std::shuffle(nameRando.begin(), nameRando.end(), rng);
         nameLast.push_back(nameRando.at(count));
-        
 
-    }
-
-    srand(unsigned(time(NULL)));
-    std::random_shuffle(nameFirst.begin(), nameFirst.end());
-
-
-    //combines it all into a single string and push backs into CustomerOutputInfo
-    for (int count = 0; count < FirstAndLastNameSize; ++count)
-    {
-        
+        //Combinding first and last name for customer output 
         CustomerOutputInfo.push_back(nameFirst.at(count).append(" ").append(nameLast.at(count)).append("                                                       ").append("$").append(currentBalenceString.at(count)));
 
-      
     }
-    
+
+
+
+
     return CustomerOutputInfo;
 
 }
 
-auto DisplayAccountInfoOneLine(std::vector <std::string> CustomerOutputInfo, int index)
+void DisplayAccountInfoOneLine(std::vector <std::string> &CustomerOutputInfo, int index)
 {
     int indexOfArray;
     std::cout << (CustomerOutputInfo.at(index));
@@ -120,8 +97,13 @@ int main()
 
 
 
-    std::vector <std::string> CustomerOutputInfo;//what we pass from userdataGenerator to displayAccountInfo and other functions
-
+    std::vector <std::string> CustomerInfo;//what we pass from userdataGenerator to displayAccountInfo and other functions
+    
+    cout << "===================================================================================" << endl;
+    cout << "Loading..." << endl;
+    cout << "===================================================================================" << endl;
+    CustomerInfo = UserdataGenerator();
+    system("cls");
 
 
     cout << "Welcome To The Bank" << endl;
@@ -136,16 +118,10 @@ int main()
     int accountNum;
     cin >> x;
 
-    if (x == 1)
-    {
-        UserdataGenerator(CustomerOutputInfo); //creates dummy data
-        
-
-    }
-
-    else
+    if (x != 1)
     {
         cout << "Invalid Selection" << endl;
+        return 5;
     }
 
     system("cls");
@@ -154,14 +130,13 @@ int main()
     cout << "===================================================================================" << endl;
     cout << "Please Enter Your Account Number" << endl;
     cout << "===================================================================================" << endl;
-    
     cin >> accountNum;
     system("cls");
-    
+
     cout << "NAME=============================================================AMOUNT============" << endl;
     cout << std::setfill('=') << endl;
-    DisplayAccountInfoOneLine(UserdataGenerator(CustomerOutputInfo), accountNum); //prints account info at specified index (account balances are strings)
-    cout << "\n \n \n" << endl;
+    DisplayAccountInfoOneLine(CustomerInfo, accountNum); //prints account info at specified index (account balances are strings)
+    cout << "\n\n\n" << endl;
 
     cout << "===================================================================================" << endl;
     cout << "Press 2 To Withdraw" << endl;
