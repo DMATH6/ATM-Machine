@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ATM-ConsoleApp.cpp">
+    <ClCompile Include="ATM-ConsoleApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
