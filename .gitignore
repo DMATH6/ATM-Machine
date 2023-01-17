@@ -1043,6 +1043,4 @@ dkms.conf
 *.uf2
 # Raspberry Pi Pico disassembler file
 *.dis
-ATM-LOCAL/ATM-LOCAL.vcxproj.filters
-ATM-LOCAL/ATM-LOCAL.sln
-ATM-LOCAL/ATM-LOCAL.vcxproj
+
