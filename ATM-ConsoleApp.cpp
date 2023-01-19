@@ -25,7 +25,7 @@ struct accountData
 	std::string lastAccessed;
 	int phoneNumber;
 	float accountBalence;
-	int accountNum;
+	int accountPassCode;
 };
 
 
@@ -136,19 +136,50 @@ auto GenerateUserData()
 	occupationsInList.push_back("Teddy Bear Surgeon ");
 
 	//GENERATE PHONE NUMBERS BEGIN==================================================================================================
-	std::vector<int> PhoneNumbersInList;
+	std::vector<int> accountBalence;
 	srand((unsigned int)time(NULL));
 
-
-
-
-	
 	for (int count = 0; count <= numberOFRowsToGenerate; ++count)
 	{
-		PhoneNumbersInList.push_back(int(rand() % 49999999 + 49300000));
+		accountBalence.push_back(int(rand() % 49999999 + 49300000));
 	};
 
 	//GENERATE PHONE NUMBERS END====================================================================================================
+
+
+
+
+
+
+	//GENERATE ACCOUNT BALANCE BEGIN==================================================================================================
+	std::vector<int> PhoneNumbersInList;
+	srand((unsigned int)time(NULL));
+
+	for (int count = 0; count <= numberOFRowsToGenerate; ++count)
+	{
+		PhoneNumbersInList.push_back(int(rand() % 20000 + 100000)/100);
+	};
+
+	//GENERATE ACCOUNT BALANCE END====================================================================================================
+
+
+
+
+
+
+	//GENERATE PASSCODE BEGIN==================================================================================================
+	std::vector<int> accountPassCode;
+	srand((unsigned int)time(NULL));
+
+	for (int count = 0; count <= numberOFRowsToGenerate; ++count)
+	{
+		accountPassCode.push_back(int(rand() % 10000 + 500));
+	};
+
+	//GENERATE PASSCODE END====================================================================================================
+
+
+
 
 
 	std::vector <accountData> collectionUserData;
@@ -170,6 +201,8 @@ auto GenerateUserData()
 		std::shuffle(namesInListFirst.begin(), namesInListFirst.end(), rng);
 		std::shuffle(namesInListLast.begin(), namesInListLast.end(), rng);
 		std::shuffle(PhoneNumbersInList.begin(), PhoneNumbersInList.end(), rng);
+		std::shuffle(accountBalence.begin(), accountBalence.end(), rng);
+		std::shuffle(accountPassCode.begin(), accountPassCode.end(), rng);
 
 	 accountData temp
 		{
@@ -179,12 +212,22 @@ auto GenerateUserData()
 			"",
 			"",
 			"",
-			PhoneNumbersInList.at(0)
+			accountBalence.at(0),
+			PhoneNumbersInList.at(0),
+			accountPassCode.at(0)
 
 		};
 	 collectionUserData.push_back(temp);
 
-	 std::cout << collectionUserData.at(count).userFirstName << "   " << collectionUserData.at(count).userLastName << "    " << collectionUserData.at(count).phoneNumber << std::endl;
+	 std::cout << collectionUserData.at(count).userFirstName << "   " 
+		 << collectionUserData.at(count).userLastName 
+		 << "    " 
+		 << collectionUserData.at(count).phoneNumber
+		 << "    "
+		 << collectionUserData.at(count).accountBalence 
+		 << "    "
+		 << collectionUserData.at(count).accountPassCode
+		 << std::endl;
 	};
 	//ADD TO STRUCT END=============================================================================================================
 
