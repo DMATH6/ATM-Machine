@@ -20,7 +20,7 @@ struct accountData
 	std::string userFirstName;
 	std::string userLastName;
 	std::string gender;
-	std::string age;
+	int age;
 	std::string occupation;
 	std::string lastAccessed;
 	int phoneNumber;
@@ -167,6 +167,22 @@ auto GenerateUserData()
 
 
 
+	//GENERATE AGE BEGIN==================================================================================================
+	std::vector<int> age;
+	srand((unsigned int)time(NULL));
+
+	for (int count = 0; count <= numberOFRowsToGenerate; ++count)
+	{
+		age.push_back(int(rand() % 120 + 18));
+	};
+
+	//GENERATE AGE END====================================================================================================
+
+
+
+
+
+
 	//GENERATE PASSCODE BEGIN==================================================================================================
 	std::vector<int> accountPassCode;
 	srand((unsigned int)time(NULL));
@@ -203,14 +219,18 @@ auto GenerateUserData()
 		std::shuffle(PhoneNumbersInList.begin(), PhoneNumbersInList.end(), rng);
 		std::shuffle(accountBalence.begin(), accountBalence.end(), rng);
 		std::shuffle(accountPassCode.begin(), accountPassCode.end(), rng);
-
+		std::shuffle(gendersInList.begin(), gendersInList.end(), rng);
+		std::shuffle(age.begin(), age.end(), rng);
+		std::shuffle(occupationsInList.begin(), occupationsInList.end(), rng);
+		
+		
 	 accountData temp
 		{
 			namesInListFirst.at(0),
 			namesInListLast.at(0),
-			"",
-			"",
-			"",
+			gendersInList.at(0),
+			age.at(0),
+			occupationsInList.at(0),
 			"",
 			accountBalence.at(0),
 			PhoneNumbersInList.at(0),
@@ -222,11 +242,18 @@ auto GenerateUserData()
 	 std::cout << collectionUserData.at(count).userFirstName << "   " 
 		 << collectionUserData.at(count).userLastName 
 		 << "    " 
+		 << collectionUserData.at(count).gender
+		 << "    "
+		 << collectionUserData.at(count).age
+		 << "    "
+		 << collectionUserData.at(count).occupation
+		 << "    "
 		 << collectionUserData.at(count).phoneNumber
 		 << "    "
 		 << collectionUserData.at(count).accountBalence 
 		 << "    "
 		 << collectionUserData.at(count).accountPassCode
+
 		 << std::endl;
 	};
 	//ADD TO STRUCT END=============================================================================================================
